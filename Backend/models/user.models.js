@@ -17,7 +17,8 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         min:[6, "Password must be atleast 6 letter"],
-        required: true
+        required: true,
+        select:false
     },
     email: {
         unique: true,
@@ -34,11 +35,14 @@ userSchema.statics.hashPassword = async function(password){
 }
 
 
-userSchema.methods.comparePassword = async function(password){
-    return await bcrypt.compare(password, this.password)
+// userSchema.statics.comparePassword = async function(password){
+//     return await bcrypt.compare(password, this.password)
+// }
+userSchema.methods.comparePassword = async function (password) {
+    return await bcrypt.compare(password, this.password);
 }
 
-userSchema.statics.generateAuthToken = function(){
+userSchema.methods.generateAuthToken = function(){
     const token =  jwt.sign({_id:this._id},  process.env.JWT_SECRET, {expiresIn:'24h'})
     return token
 }
