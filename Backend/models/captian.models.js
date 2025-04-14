@@ -72,7 +72,7 @@ captianSchema.methods.generateAuthToken = async()=>{
     return token
 }
 
-captianSchema.methods.comparePassword = async(password)=>{
+captianSchema.methods.comparePassword = async function(password){
     return await bcrypt.compare(password, this.password)
 }
 
