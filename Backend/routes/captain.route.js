@@ -20,6 +20,6 @@ Router.post('/login', [
 
 Router.get('/profile',authUser, captainController.getProfile)
 
-Router.get('/logout', authUser, captainController.getLogout)
+Router.get('/captain-logout', authUser, captainController.getLogout)
 
 module.exports = Router

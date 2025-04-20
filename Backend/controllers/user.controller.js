@@ -11,7 +11,7 @@ module.exports.registerUser = async (req, res, next)=>{
     }
 
     const {fullname, email, password} = req.body
-    const doesUserExist = await Captain.findOne({email})
+    const doesUserExist = await User.findOne({email})
 
     if(doesUserExist){
         res.status(400).json({message:"A user already exists with that email"})
