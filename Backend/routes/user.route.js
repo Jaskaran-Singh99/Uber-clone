@@ -19,6 +19,7 @@ Router.post('/login', [
 userController.loginUser)
 
 Router.get('/profile', authUser, userController.getUserProfile)
+// Router.get('/he', authUser, userController.getUserProfile)
 Router.get('/logout',authUser, userController.logoutUser )
 
 

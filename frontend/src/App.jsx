@@ -11,12 +11,16 @@ import Home from './pages/home'
 import CaptainHome from './pages/CaptainHome'
 import CaptainLogout from './pages/CaptainLogout'
 import UserLogout from './pages/UserLogout'
+import Riding from './pages/Riding'
+import CaptainRiding from './pages/CaptainRiding'
 
 const App = () => {
   return (
     <Routes>
       <Route path='/' element={<Start></Start>} ></Route>
       <Route path='/home' element={<UserProtection><Home></Home></UserProtection>} ></Route>
+      <Route path='/captain-riding' element={<CaptainRiding/>}></Route>
+      <Route path='/riding' element={<Riding></Riding>}></Route>
       <Route path='/captain-login' element={<CaptainLogin></CaptainLogin>}></Route>
       <Route path='/captain-signup' element={<CaptainSignup></CaptainSignup>}> </Route>
       <Route path='/login' element={<UserLogin></UserLogin>}></Route>

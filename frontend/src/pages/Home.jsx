@@ -34,7 +34,7 @@ const home = () => {
       </div>
       <div className="absolute  h-screen top-0 w-full flex flex-col justify-end rounded-lg">
         <div className="h-[30%] p-5 bg-white relative">
-          <h3 className="text-2xl" onClick={() => {setIsPanelOpen(false) , setVehiclePanel(false), setConfirmRidePanel(false) ,setLookingForADriver(false)}}>
+          <h3 className="text-2xl" onClick={() => {setIsPanelOpen(false) , setVehiclePanel(false), setConfirmRidePanel(false) ,setLookingForADriver(false) , setWaitingForADriver(false)}}>
             <i className="ri-arrow-down-wide-line absolute top-6 right-5"></i>
           </h3>
           <h4 className="font-semibold text-3xl ">Find Trip</h4>
@@ -68,7 +68,7 @@ const home = () => {
             setVehiclePanel={setVehiclePanel}
           ></LocationSearchPanel>
         </motion.div>
-      </div>
+      </div> 
       <VehiclePanel vehiclePanel={vehiclePanel} setConfirmRidePanel={setConfirmRidePanel}></VehiclePanel>
       <ConfirmRide confirmRidePanel={confirmRidePanel} setLookingForADriver={setLookingForADriver}></ConfirmRide>
       <LookingForADriver lookingForADriver={lookingForADriver} setWaitingForADriver={setWaitingForADriver}></LookingForADriver>

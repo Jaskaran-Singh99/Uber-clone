@@ -13,6 +13,7 @@ Router.post('/register', [
     body('vehicle.capacity').isLength({min:1}).withMessage('Capacity must be at least 1 '),
 ], captainController.registerCaptain)
 
+
 Router.post('/login', [
     body('email').isEmail().withMessage('Please provide a valid email'),
     body('password').isLength({min:6}).withMessage('Password must be 6 characters long')
