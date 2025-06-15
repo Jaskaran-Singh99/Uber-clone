@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const VehiclePanel = ({ vehiclePanel, setConfirmRidePanel }) => {
+const VehiclePanel = ({ vehiclePanel, setConfirmRidePanel, fare, createRide, setVehicleType}) => {
   return (
     <motion.div
       initial={{ height: 0 }}
@@ -12,7 +12,7 @@ const VehiclePanel = ({ vehiclePanel, setConfirmRidePanel }) => {
       <h2 className="font-semibold text-2xl mb-4 text-center mt-4">
         Choose a vehicle
       </h2>
-      <div onClick={()=>setConfirmRidePanel(true)} className="flex items-center justify-between border-2 active:border-black rounded-xl p-2 w-full mb-3">
+      <div onClick={()=>{setConfirmRidePanel(true), setVehicleType('car')}} className="flex items-center justify-between border-2 active:border-black rounded-xl p-2 w-full mb-3">
         <img
           className="h-12 "
           src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_368,w_552/v1682350114/assets/c2/296eac-574a-4a81-a787-8a0387970755/original/UberBlackXL.png"
@@ -29,7 +29,7 @@ const VehiclePanel = ({ vehiclePanel, setConfirmRidePanel }) => {
             Affordable compact rides
           </p>
         </div>
-        <div className="font-semibold text-xl ">$190</div>
+        <div className="font-semibold text-xl ">{fare.car}$</div>
       </div>
       <div className="flex items-center justify-between border-2 active:border-black rounded-xl p-2 w-full mb-3">
         <img
@@ -48,7 +48,7 @@ const VehiclePanel = ({ vehiclePanel, setConfirmRidePanel }) => {
             Affordable motorcycle rides
           </p>
         </div>
-        <div className="font-semibold text-xl ">$100</div>
+        <div className="font-semibold text-xl ">{fare.motorcycle}$</div>
       </div>
       <div className="flex items-center justify-between border-2 active:border-black rounded-xl p-2 w-full mb-3">
         <img
@@ -67,7 +67,7 @@ const VehiclePanel = ({ vehiclePanel, setConfirmRidePanel }) => {
             Affordable Auto rides
           </p>
         </div>
-        <div className="font-semibold text-xl ">$45</div>
+        <div className="font-semibold text-xl ">{fare.auto}$</div>
       </div>
     </motion.div>
   );

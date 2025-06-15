@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const ConfirmRide = ({ confirmRidePanel, setLookingForADriver }) => {
+const ConfirmRide = ({ confirmRidePanel, setLookingForADriver, createRide, pickup, destination, fare, vehicleType}) => {
   return (
     <motion.div
       initial={{ height: 0 }}
@@ -20,26 +20,26 @@ const ConfirmRide = ({ confirmRidePanel, setLookingForADriver }) => {
             <i className="ri-map-pin-2-fill text-xl"></i>
             <div>
                 <h3 className="text-lg font-medium">L6X/4L3</h3>
-                <p className="text-gray-600 text-sm">15 Beaverhall Road, Brampton, Ontario</p>
+                <p className="text-gray-600 text-sm">{pickup}</p>
             </div>
         </div>
         <div className="flex items-center gap-5  mb-4">
             <i className="ri-map-pin-user-fill text-xl"></i>
             <div>
                 <h3 className="text-lg font-medium">Third Wave Coffee</h3>
-                <p className="text-gray-600 text-sm">35 Lonestar Creascent, Brampton, Ontario</p>
+                <p className="text-gray-600 text-sm">{destination}</p>
             </div>
         </div>
         <div className="flex items-center gap-5 mb-4">
             <i className="ri-currency-line text-xl"></i>
             <div>
-                <h3 className="text-lg font-medium">190$</h3>
+                <h3 className="text-lg font-medium">{fare[vehicleType]}$</h3>
                 <p className="text-gray-600 text-sm">Cash</p>
             </div>
         </div>
         
       </div>
-      <button onClick={()=>setLookingForADriver(true)} className="w-full bg-green-700 p-2 rounded-lg text-white font-semibold text-lg mt-5">Confirm</button>
+      <button onClick={()=>{setLookingForADriver(true), createRide()}} className="w-full bg-green-700 p-2 rounded-lg text-white font-semibold text-lg mt-5">Confirm</button>
     </motion.div>
   );
 };

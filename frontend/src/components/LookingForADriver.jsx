@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import {motion} from 'framer-motion'
 
-const LookingForADriver = ({lookingForADriver, setWaitingForADriver}) => {
+const LookingForADriver = ({lookingForADriver, setWaitingForADriver, pickup, destination, fare, vehicleType}) => {
   return (
     <motion.div
       initial={{ height: 0 }}
@@ -25,7 +25,7 @@ const LookingForADriver = ({lookingForADriver, setWaitingForADriver}) => {
           <div>
             <h3 className="text-lg font-medium">L6X/4L3</h3>
             <p className="text-gray-600 text-sm">
-              15 Beaverhall Road, Brampton, Ontario
+              {pickup}
             </p>
           </div>
         </div>
@@ -34,14 +34,14 @@ const LookingForADriver = ({lookingForADriver, setWaitingForADriver}) => {
           <div>
             <h3 className="text-lg font-medium">Third Wave Coffee</h3>
             <p className="text-gray-600 text-sm">
-              35 Lonestar Creascent, Brampton, Ontario
+              {destination}
             </p>
           </div>
         </div>
         <div className="flex items-center gap-5 mb-4">
           <i className="ri-currency-line text-xl"></i>
           <div>
-            <h3 className="text-lg font-medium">190$</h3>
+            <h3 className="text-lg font-medium">{fare[vehicleType]}$</h3>
             <p className="text-gray-600 text-sm">Cash</p>
           </div>
         </div>
