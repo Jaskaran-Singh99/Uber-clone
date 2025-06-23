@@ -1,13 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect} from "react";
 import { Link } from "react-router-dom";
 import { CaptainDataContext } from "../context/CaptainContext";
 import axios from "axios";
 import {useNavigate} from 'react-router-dom'
 
-const captainSignup = () => {
+const CaptainSignup = () => {
+   const navigate = useNavigate()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [vehicleColor, setVehicleColor] = useState("");
@@ -17,7 +18,7 @@ const captainSignup = () => {
 
   const { captain, setCaptain } = useContext(CaptainDataContext);
 
-  const navigate = useNavigate()
+ 
 
   const submitHandler = async(e) => {
     e.preventDefault();
@@ -32,15 +33,17 @@ const captainSignup = () => {
         vehicleType: vehicleType
       }
     };
-    console.log(newCaptain);
+
 
     const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captains/register`, newCaptain)
 
     if(response.status === 201){
       const data = response.data
       setCaptain(data.captain)
+
+      localStorage.setItem('captain', JSON.stringify(data.captain));
       localStorage.setItem('token', data.token)
-      navigate('/captain-home')
+    navigate('/captain-home')
     }
 
     setEmail("");
@@ -51,9 +54,12 @@ const captainSignup = () => {
     setVehicleCapacity("");
     setVehicleColor("");
     setVehiclePlate("");
+      
   };
   return (
+    
     <div className="p-7 flex flex-col justify-between h-screen">
+
       <form onSubmit={(e) => submitHandler(e)}>
         <img
           className="w-20 mb-3"
@@ -138,7 +144,7 @@ const captainSignup = () => {
             </option>
             <option value="car">Car</option>
             <option value="auto">Auto</option>
-            <option value="moto">Moto</option>
+            <option value="motorcycle">Moto</option>
           </select>
         </div>
         <button
@@ -165,4 +171,4 @@ const captainSignup = () => {
   );
 };
 
-export default captainSignup;
+export default CaptainSignup;

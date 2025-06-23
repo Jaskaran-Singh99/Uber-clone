@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { motion } from "framer-motion";
 import "remixicon/fonts/remixicon.css";
 import LocationSearchPanel from "../components/LocationSearchPanel";
@@ -6,6 +6,9 @@ import VehiclePanel from "../components/VehiclePanel";
 import ConfirmRide from "../components/ConfirmRide";
 import LookingForADriver from "../components/LookingForADriver";
 import WaitingForADriver from "../components/WaitingForADriver";
+
+import { SocketContext } from "../context/SocketContext";
+import {UserDataContext} from "../context/UserContext";
 import axios from 'axios'
 
 
@@ -24,6 +27,13 @@ const home = () => {
   const [fare, setFare] = useState([])
  
       
+   const { socket } = useContext(SocketContext)
+    const {user} = useContext(UserDataContext)
+     useEffect(() => {
+      console.log(user)
+        socket.emit("join", { userType: "user", userId: user._id })
+    }, [  ])
+
        const handlePickupChange = async (e) => {
         setPickup(e.target.value)
         try {

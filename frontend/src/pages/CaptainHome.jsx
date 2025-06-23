@@ -4,8 +4,44 @@ import { useState } from "react";
 import CaptainDetails from "../components/CaptainDetails";
 import RidePopUp from "../components/RidePopUp";
 import ConfirmRidePopUp from "../components/ConfirmRidePopUp";
+import { useContext, useEffect } from "react";
+import {CaptainDataContext} from "../context/CaptainContext";
+import { SocketContext } from "../context/SocketContext";
 
 const CaptainHome = () => {
+
+  const {socket} = useContext(SocketContext)
+  const {captain} = useContext(CaptainDataContext)
+  
+  useEffect(() => {
+    if (captain?._id && socket) {
+      socket.emit('join', {
+        userId: captain._id,
+        userType: 'captain',
+      });
+
+      // Using coords to get the live location of captain because we cannot directly get the live location of captain on browser
+      // also I used "PORTS" functionality of vs code to access the location because I ton of browser do not allow to get the location
+      const updateLocation = () => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+
+                    socket.emit('update-location-captain', {
+                        userId: captain._id,
+                        location: {
+                            ltd: position.coords.latitude,
+                            lng: position.coords.longitude
+                        }
+                    })
+                })
+            }
+          }
+        const locationInterval = setInterval(updateLocation, 10000)
+        updateLocation()
+        }
+  }, [captain, socket]);
+
+  
   const [confirmRidePopUp, setConfirmRidePopUp] = useState(false)
   return (
     <div className="h-screen">
@@ -24,7 +60,7 @@ const CaptainHome = () => {
           src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif"
         ></img>
       </div>
-     <CaptainDetails></CaptainDetails>
+     <CaptainDetails captain={captain}></CaptainDetails>
      <RidePopUp  setConfirmRidePopUp={setConfirmRidePopUp}></RidePopUp>
      <ConfirmRidePopUp setConfirmRidePopUp={setConfirmRidePopUp} confirmRidePopUp={confirmRidePopUp}></ConfirmRidePopUp>
     
