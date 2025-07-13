@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const ConfirmRide = ({ confirmRidePanel, setLookingForADriver, createRide, pickup, destination, fare, vehicleType}) => {
+const ConfirmRide = ({ confirmRidePanel, setConfirmRidePanel, setLookingForADriver, createRide, pickup, destination, fare, vehicleType}) => {
   return (
     <motion.div
       initial={{ height: 0 }}
@@ -39,7 +39,12 @@ const ConfirmRide = ({ confirmRidePanel, setLookingForADriver, createRide, picku
         </div>
         
       </div>
-      <button onClick={()=>{setLookingForADriver(true), createRide()}} className="w-full bg-green-700 p-2 rounded-lg text-white font-semibold text-lg mt-5">Confirm</button>
+      <button onClick={()=>{
+        setLookingForADriver(true)
+        // setConfirmRidePanel(false)
+        createRide()
+      }} 
+        className="w-full bg-green-700 p-2 rounded-lg text-white font-semibold text-lg mt-5">Confirm</button>
     </motion.div>
   );
 };

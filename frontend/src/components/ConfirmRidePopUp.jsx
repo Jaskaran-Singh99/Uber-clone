@@ -1,13 +1,34 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+const ConfirmRidePopUp = ({ confirmRidePopUp, setConfirmRidePopUp, ride }) => {
 
-import { Link } from "react-router-dom";
-const ConfirmRidePopUp = ({ confirmRidePopUp, setConfirmRidePopUp }) => {
-
+  const navigate = useNavigate()
   const [otp, setOtp] = useState('')
-  const submitHandler = (e) => {
-    e.preventDefault();
-  };
+
+
+   const submitHandler = async (e) => {
+        e.preventDefault()
+
+        const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/rides/start-ride`, {
+            params: {
+                rideId: ride._id,
+                otp: otp
+            },
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`
+            }
+        })
+
+        if (response.status === 200) {
+            setConfirmRidePopUp(false)
+            // setRidePopup(false) using the state to pass the data to the other page 
+            navigate('/captain-riding', { state: { ride: ride } }) 
+        }
+
+
+    }
 
   return (
     <motion.div
@@ -30,7 +51,7 @@ const ConfirmRidePopUp = ({ confirmRidePopUp, setConfirmRidePopUp }) => {
             className="h-14 rounded-full"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU8Wu_1D29aOedgGsXeNh3dagpO76RBTTo3g&s"
           ></img>
-          <h2 className="font-medium text-lg">Harshad Mehta</h2>
+          <h2 className="font-medium text-lg">{ride?.user.fullname.firstname}</h2>
           <h5 className="font-bold">3.5km</h5>
         </div>
       </div>
@@ -41,7 +62,7 @@ const ConfirmRidePopUp = ({ confirmRidePopUp, setConfirmRidePopUp }) => {
           <div>
             <h3 className="text-lg font-medium">L6X/4L3</h3>
             <p className="text-gray-600 text-sm">
-              15 Beaverhall Road, Brampton, Ontario
+              {ride?.pickup}
             </p>
           </div>
         </div>
@@ -50,18 +71,18 @@ const ConfirmRidePopUp = ({ confirmRidePopUp, setConfirmRidePopUp }) => {
           <div>
             <h3 className="text-lg font-medium">Third Wave Coffee</h3>
             <p className="text-gray-600 text-sm">
-              35 Lonestar Creascent, Brampton, Ontario
+              {ride?.destination}
             </p>
           </div>
         </div>
         <div className="flex items-center gap-5 mb-4">
           <i className="ri-currency-line text-xl"></i>
           <div>
-            <h3 className="text-lg font-medium">190$</h3>
+            <h3 className="text-lg font-medium">{ride?.fare}$</h3>
             <p className="text-gray-600 text-sm">Cash</p>
           </div>
         </div>
-        <form onSubmit={(e) => submitHandler(e)}>
+        <form onSubmit={submitHandler}>
           <input
             placeholder="Enter OTP"
             type="text"
@@ -69,12 +90,13 @@ const ConfirmRidePopUp = ({ confirmRidePopUp, setConfirmRidePopUp }) => {
             onChange={(e)=>setOtp(e.target.value)}
             value={otp}
           ></input>
-          <Link
+          {/* <Link
             className="w-full bg-green-600 p-2 rounded-lg text-white font-semibold text-lg mt-5 block text-center"
             to={"/captain-riding"}
           >
             Confirm
-          </Link>
+          </Link> */}
+          <button className='w-full mt-5 text-lg flex justify-center bg-green-600 text-white font-semibold p-3 rounded-lg'>Confirm</button>
           <button
             className="w-full bg-red-600 p-2 rounded-lg font-semibold text-lg mt-2 text-white font-mono"
             onClick={() => setConfirmRidePopUp(false)}

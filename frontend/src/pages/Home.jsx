@@ -6,10 +6,11 @@ import VehiclePanel from "../components/VehiclePanel";
 import ConfirmRide from "../components/ConfirmRide";
 import LookingForADriver from "../components/LookingForADriver";
 import WaitingForADriver from "../components/WaitingForADriver";
-
+import {useNavigate } from "react-router-dom";
 import { SocketContext } from "../context/SocketContext";
 import {UserDataContext} from "../context/UserContext";
 import axios from 'axios'
+import LiveTracking from "../components/LiveTracking";
 
 
 const home = () => {
@@ -22,9 +23,14 @@ const home = () => {
   const [ destinationSuggestions, setDestinationSuggestions ] = useState([])
   const [ activeField, setActiveField ] = useState(null)
   const [lookingForADriver, setLookingForADriver] = useState(false)
-  const [waitingForADriver, setWaitingForADriver] = useState(false)
+  const [waitingForDriver, setWaitingForDriver] = useState(false)
   const [vehicleType, setVehicleType]= useState(null)
   const [fare, setFare] = useState([])
+  const [ride , setRide] = useState(null)
+   const [ vehicleFound, setVehicleFound ] = useState(false)
+   const navigate = useNavigate()
+  
+  
  
       
    const { socket } = useContext(SocketContext)
@@ -33,6 +39,19 @@ const home = () => {
       console.log(user)
         socket.emit("join", { userType: "user", userId: user._id })
     }, [  ])
+
+    socket.on('ride-confirmed', ride => {
+
+
+        setVehicleFound(false)
+        setWaitingForDriver(true)
+        setRide(ride)
+    })
+    socket.on('ride-started', ride => {
+        console.log("ride")
+        setWaitingForDriver(false)
+        navigate('/riding', { state: { ride } }) // Updated navigate to include ride data
+    })
 
        const handlePickupChange = async (e) => {
         setPickup(e.target.value)
@@ -90,7 +109,8 @@ const home = () => {
     }
 
   async function createRide() {
-        const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/rides/create`, {
+       try{
+         const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/rides/create`, {
             pickup,
             destination,
             vehicleType
@@ -100,6 +120,10 @@ const home = () => {
             }
         })
         console.log(response)
+       }
+       catch(err){
+        console.log(err)
+       }
 
     }
 
@@ -110,14 +134,18 @@ const home = () => {
         src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Uber_logo_2018.png"
       ></img>
       <div>
-        <img
+        {/* <img
           className="h-screen w-screen object-cover"
           src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif"
-        ></img>
+        ></img> */}
+        <div className='h-screen w-screen'>
+                {/* image for temporary use  */}
+                <LiveTracking />
+            </div>
       </div>
       <div className="absolute  h-screen top-0 w-full flex flex-col justify-end rounded-lg">
         <div className="h-[35%] p-5 bg-white relative">
-          <h3 className="text-2xl" onClick={() => {setIsPanelOpen(false) , setVehiclePanel(false), setConfirmRidePanel(false) ,setLookingForADriver(false) , setWaitingForADriver(false)}}>
+          <h3 className="text-2xl" onClick={() => {setIsPanelOpen(false) , setVehiclePanel(false), setConfirmRidePanel(false) ,setLookingForADriver(false) , setWaitingForDriver(false)}}>
             <i className="ri-arrow-down-wide-line absolute top-6 right-5"></i>
           </h3>
           <h4 className="font-semibold text-3xl ">Find Trip</h4>
@@ -146,7 +174,9 @@ const home = () => {
             />
             {/* <button type="submit"></button> */}
           </form>
-             <button onClick={findTrip} className="bg-black text-white px-4 py-2 rounded-lg mt-3 w-full">Find Trip</button>
+             <button onClick={()=>{findTrip()
+              createRide()
+             }} className="bg-black text-white px-4 py-2 rounded-lg mt-3 w-full">Find Trip</button>
         </div>
         <motion.div
           initial={{ height: 0 }}
@@ -165,9 +195,15 @@ const home = () => {
         </motion.div>
       </div> 
       <VehiclePanel setVehicleType={setVehicleType} createRide={createRide} fare={fare} vehiclePanel={vehiclePanel} setConfirmRidePanel={setConfirmRidePanel}></VehiclePanel>
-      <ConfirmRide fare={fare} vehicleType={vehicleType} pickup={pickup} destination={destination} createRide={createRide} confirmRidePanel={confirmRidePanel} setLookingForADriver={setLookingForADriver}></ConfirmRide>
-      <LookingForADriver fare={fare} vehicleType={vehicleType} pickup={pickup} destination={destination} lookingForADriver={lookingForADriver} setWaitingForADriver={setWaitingForADriver}></LookingForADriver>
-      <WaitingForADriver waitingForADriver={waitingForADriver}></WaitingForADriver>
+      <ConfirmRide fare={fare} vehicleType={vehicleType} pickup={pickup} destination={destination} createRide={createRide} setConfirmRidePanel={setConfirmRidePanel} confirmRidePanel={confirmRidePanel} setLookingForADriver={setLookingForADriver}></ConfirmRide>
+      <LookingForADriver waitingForDriver={waitingForDriver} fare={fare} vehicleType={vehicleType} pickup={pickup} destination={destination} lookingForADriver={lookingForADriver} setWaitingForDriver={setWaitingForDriver}></LookingForADriver>
+      <WaitingForADriver 
+      ride={ride}
+      waitingForDriver={waitingForDriver}
+        setVehicleFound={setVehicleFound}
+        setWaitingForDriver={setWaitingForDriver}
+        setRide={setRide}
+      ></WaitingForADriver>
     </div>
   );
 };

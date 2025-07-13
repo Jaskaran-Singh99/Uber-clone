@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import CaptainDetails from "../components/CaptainDetails";
 import RidePopUp from "../components/RidePopUp";
@@ -8,6 +8,8 @@ import FinishRide from "../components/FinishRide";
 
 const CaptainRiding = () => {
     const [finishRide, setFinishRide] = useState(false)
+    const location = useLocation()
+    const rideData = location.state?.ride
   return (
     <div className="h-screen">
     <div className="fixed p-3 top-0 flex w-1/2">
@@ -29,7 +31,7 @@ const CaptainRiding = () => {
     <h3 className="font-bold text-lg">4 KM Away</h3>
     <button className=" bg-green-700  rounded-lg text-white font-semibold text-lg p-3 px-10" onClick={()=>setFinishRide(true)}>Confirm</button>
     </div>
-    <FinishRide finishRide={finishRide} setFinishRide={setFinishRide}></FinishRide>
+    <FinishRide rideData={rideData} finishRide={finishRide} setFinishRide={setFinishRide}></FinishRide>
 
   
   </div>

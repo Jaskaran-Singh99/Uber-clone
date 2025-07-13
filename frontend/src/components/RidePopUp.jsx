@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 // import ConfirmRidePopUp from "./ConfirmRidePopUp";
 
-const RidePopUp = ({setConfirmRidePopUp}) => {
-  const [ridePopUp, setRidePopUp] = useState(true);
+const RidePopUp = ({confirmRide, ridePopUp, setRidePopUp, setConfirmRidePopUp, ride}) => {
+  
   return (
     <motion.div
       initial={{ height: "30%" }}
@@ -22,7 +22,7 @@ const RidePopUp = ({setConfirmRidePopUp}) => {
       <div>
         <div className="flex items-center mb-4 justify-between bg-slate-400 p-4 rounded-lg">
         <img className="h-14 rounded-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU8Wu_1D29aOedgGsXeNh3dagpO76RBTTo3g&s"></img>
-        <h2 className="font-medium text-lg">Harshad Mehta</h2>
+        <h2 className="font-medium text-lg">{ride?.user.fullname.firstname + " "+ride?.user.fullname.lastname}</h2>
         <h5 className="font-bold">3.5km</h5>
         </div>
      
@@ -33,29 +33,29 @@ const RidePopUp = ({setConfirmRidePopUp}) => {
         <div className="flex items-center gap-5  mb-4">
           <i className="ri-map-pin-2-fill text-xl"></i>
           <div>
-            <h3 className="text-lg font-medium">L6X/4L3</h3>
+            <h3 className="text-lg font-medium">Location</h3>
             <p className="text-gray-600 text-sm">
-              15 Beaverhall Road, Brampton, Ontario
+              {ride?.pickup}
             </p>
           </div>
         </div>
         <div className="flex items-center gap-5  mb-4">
           <i className="ri-map-pin-user-fill text-xl"></i>
           <div>
-            <h3 className="text-lg font-medium">Third Wave Coffee</h3>
+            <h3 className="text-lg font-medium">Destination</h3>
             <p className="text-gray-600 text-sm">
-              35 Lonestar Creascent, Brampton, Ontario
+              {ride?.destination}
             </p>
           </div>
         </div>
         <div className="flex items-center gap-5 mb-4">
           <i className="ri-currency-line text-xl"></i>
           <div>
-            <h3 className="text-lg font-medium">190$</h3>
+            <h3 className="text-lg font-medium">{ride?.fare}$</h3>
             <p className="text-gray-600 text-sm">Cash</p>
           </div>
         </div>
-        <button className="w-full bg-green-600 p-2 rounded-lg text-white font-semibold text-lg mt-5" onClick={() =>{ setRidePopUp(false), setConfirmRidePopUp(true)} }>
+        <button className="w-full bg-green-600 p-2 rounded-lg text-white font-semibold text-lg mt-5" onClick={() =>{confirmRide() ,setRidePopUp(false), setConfirmRidePopUp(true)} }>
           Accept
         </button>
         <button className="w-full bg-gray-300 p-2 rounded-lg font-semibold text-lg mt-2" onClick={() => setRidePopUp(false)}>

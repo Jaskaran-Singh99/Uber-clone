@@ -1,6 +1,6 @@
 const socketIo = require('socket.io');
 const userModel = require('./models/user.models');
-const captainModel = require('./models/captian.models');
+const captianSchema = require('./models/captian.models');
 
 let io;
 
@@ -24,7 +24,7 @@ function initializeSocket(server) {
             if (userType === 'user') {
                 await userModel.findByIdAndUpdate(userId, { socketId: socket.id });
             } else if (userType === 'captain') {
-                await captainModel.findByIdAndUpdate(userId, { socketId: socket.id });
+                await captianSchema.findByIdAndUpdate(userId, { socketId: socket.id });
             }
         });
 
@@ -36,7 +36,7 @@ function initializeSocket(server) {
                 return socket.emit('error', { message: 'Invalid location data' });
             }
 
-            await captainModel.findByIdAndUpdate(userId, {
+            await captianSchema.findByIdAndUpdate(userId, {
                 location: {
                     ltd: location.ltd,
                     lng: location.lng

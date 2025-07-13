@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import {motion} from 'framer-motion'
 
-const LookingForADriver = ({lookingForADriver, setWaitingForADriver, pickup, destination, fare, vehicleType}) => {
+const LookingForADriver = ({lookingForADriver, setWaitingForDriver, pickup, destination, fare, vehicleType}) => {
   return (
     <motion.div
       initial={{ height: 0 }}
@@ -45,7 +45,7 @@ const LookingForADriver = ({lookingForADriver, setWaitingForADriver, pickup, des
             <p className="text-gray-600 text-sm">Cash</p>
           </div>
         </div>
-        <button onClick={()=>setWaitingForADriver(true)}>click me</button>
+        <button onClick={()=>setWaitingForDriver(true)}>click me</button>
       </div>
     
     </motion.div>
