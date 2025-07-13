@@ -78,7 +78,7 @@ const ConfirmRidePopUp = ({ confirmRidePopUp, setConfirmRidePopUp, ride }) => {
         <div className="flex items-center gap-5 mb-4">
           <i className="ri-currency-line text-xl"></i>
           <div>
-            <h3 className="text-lg font-medium">{ride?.fare}$</h3>
+            <h3 className="text-lg font-medium">{ride?.fare}$</h3> 
             <p className="text-gray-600 text-sm">Cash</p>
           </div>
         </div>
