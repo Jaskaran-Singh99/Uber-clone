@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Start from './pages/Start'
-import CaptainLogin from '../src/pages/captainLogin'
+import CaptainLogin from '../src/pages/CaptainLogin.jsx'
 import CaptainSignup from '../src/pages/CaptainSignup'
 import UserLogin from '../src/pages/UserLogin'
 import UserSignup from '../src/pages/UserSignup'
