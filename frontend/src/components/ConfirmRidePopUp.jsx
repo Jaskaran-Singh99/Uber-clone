@@ -38,7 +38,7 @@ const ConfirmRidePopUp = ({ confirmRidePopUp, setConfirmRidePopUp, ride }) => {
       className="z-10 fixed bottom-0 bg-white px-4  w-full h-[70%] "
     >
       <h2 className="font-semibold text-2xl mb-4 text-center mt-4">
-        New Ride Found!
+        Enter OTP to confirm!
       </h2>
       <i
         className="ri-arrow-down-wide-line absolute top-6 right-5 text-xl"
@@ -49,7 +49,7 @@ const ConfirmRidePopUp = ({ confirmRidePopUp, setConfirmRidePopUp, ride }) => {
         <div className="flex items-center mb-4 justify-between bg-slate-400 p-4 rounded-lg">
           <img
             className="h-14 rounded-full"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU8Wu_1D29aOedgGsXeNh3dagpO76RBTTo3g&s"
+            src="https://images.unsplash.com/vector-1749124647885-49713a8d2750?q=80&w=2360&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           ></img>
           <h2 className="font-medium text-lg">{ride?.user.fullname.firstname}</h2>
           <h5 className="font-bold">3.5km</h5>
@@ -57,7 +57,7 @@ const ConfirmRidePopUp = ({ confirmRidePopUp, setConfirmRidePopUp, ride }) => {
       </div>
 
       <div className="w-full">
-        <div className="flex items-center gap-5  mb-4">
+        {/* <div className="flex items-center gap-5  mb-4">
           <i className="ri-map-pin-2-fill text-xl"></i>
           <div>
             <h3 className="text-lg font-medium">L6X/4L3</h3>
@@ -65,8 +65,15 @@ const ConfirmRidePopUp = ({ confirmRidePopUp, setConfirmRidePopUp, ride }) => {
               {ride?.pickup}
             </p>
           </div>
+        </div> */}
+         <div className="flex items-center gap-5  mb-4">
+            <i className="ri-map-pin-2-fill text-2xl"></i>
+            <div>
+                <h3 className="text-lg font-medium">Pickup Location</h3>
+                <p className="text-gray-600 text-sm">{ride?.pickup}</p>
+            </div>
         </div>
-        <div className="flex items-center gap-5  mb-4">
+        {/* <div className="flex items-center gap-5  mb-4">
           <i className="ri-map-pin-user-fill text-xl"></i>
           <div>
             <h3 className="text-lg font-medium">Third Wave Coffee</h3>
@@ -74,13 +81,27 @@ const ConfirmRidePopUp = ({ confirmRidePopUp, setConfirmRidePopUp, ride }) => {
               {ride?.destination}
             </p>
           </div>
+        </div> */}
+         <div className="flex items-center gap-5  mb-4">
+            <i className="ri-map-pin-user-fill text-2xl"></i>
+            <div>
+                <h3 className="text-lg font-medium">Destination</h3>
+                <p className="text-gray-600 text-sm">{ride?.destination}</p>
+            </div>
         </div>
-        <div className="flex items-center gap-5 mb-4">
+        {/* <div className="flex items-center gap-5 mb-4">
           <i className="ri-currency-line text-xl"></i>
           <div>
             <h3 className="text-lg font-medium">{ride?.fare}$</h3> 
             <p className="text-gray-600 text-sm">Cash</p>
           </div>
+        </div> */}
+          <div className="flex items-center gap-5 mb-4">
+            <i className="ri-currency-line text-2xl"></i>
+            <div>
+                <h3 className="text-lg font-medium">{ride?.fare}$</h3>
+                <p className="text-gray-600 text-sm">Price</p>
+            </div>
         </div>
         <form onSubmit={submitHandler}>
           <input
@@ -105,6 +126,38 @@ const ConfirmRidePopUp = ({ confirmRidePopUp, setConfirmRidePopUp, ride }) => {
           </button>
         </form>
       </div>
+       {/* <div className="w-full ml-4">
+         <div className="flex items-center gap-5 mb-4">
+           <i class="ri-subway-fill text-2xl"></i>
+            <div>
+                <h3 className="text-lg font-medium">Vehicle Type</h3>
+                <p className="text-gray-600 text-sm capitalize">{vehicleType}</p>
+            </div>
+        </div> 
+
+        <div className="flex items-center gap-5  mb-4">
+            <i className="ri-map-pin-2-fill text-2xl"></i>
+            <div>
+                <h3 className="text-lg font-medium">Pickup Location</h3>
+                <p className="text-gray-600 text-sm">{pickup}</p>
+            </div>
+        </div>
+        <div className="flex items-center gap-5  mb-4">
+            <i className="ri-map-pin-user-fill text-2xl"></i>
+            <div>
+                <h3 className="text-lg font-medium">Destination</h3>
+                <p className="text-gray-600 text-sm">{destination}</p>
+            </div>
+        </div>
+        <div className="flex items-center gap-5 mb-4">
+            <i className="ri-currency-line text-2xl"></i>
+            <div>
+                <h3 className="text-lg font-medium">{fare[vehicleType]}$</h3>
+                <p className="text-gray-600 text-sm">Price</p>
+            </div>
+        </div>
+        
+      </div> */}
     </motion.div>
   );
 };

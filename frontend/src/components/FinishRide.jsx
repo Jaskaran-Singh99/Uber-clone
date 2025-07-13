@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import axios from "axios";
+import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 const FinishRide = ({finishRide, setFinishRide, rideData}) => {
@@ -43,13 +43,13 @@ const FinishRide = ({finishRide, setFinishRide, rideData}) => {
       <div className="flex items-center mb-4 justify-between bg-slate-400 p-4 rounded-lg">
         <img
           className="h-14 rounded-full"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU8Wu_1D29aOedgGsXeNh3dagpO76RBTTo3g&s"
+          src="https://images.unsplash.com/vector-1749124647885-49713a8d2750?q=80&w=2360&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         ></img>
         <h2 className="font-medium text-lg">{rideData?.user.fullname.firstname}</h2>
         <h5 className="font-bold"></h5>
       </div>
     </div>
-
+{/* 
     <div className="w-full">
       <div className="flex items-center gap-5  mb-4">
         <i className="ri-map-pin-2-fill text-xl"></i>
@@ -76,18 +76,57 @@ const FinishRide = ({finishRide, setFinishRide, rideData}) => {
           <p className="text-gray-600 text-sm">Cash</p>
         </div>
       </div>
-      {/* <form onSubmit={(e) => submitHandler(e)}> */}
+      <form onSubmit={(e) => submitHandler(e)}>
       
         <button
           className="w-full bg-green-600 p-2 rounded-lg text-white font-semibold text-lg mt-5 block text-center"
-          // to={"/captain-riding"}
+    
+          onClick={endRide}
+        >
+          Finish Ride
+        </button>
+        
+      </form>
+    </div> */}
+    <div className="w-full">
+        <div className="flex items-center gap-5  mb-4">
+          <i className="ri-map-pin-2-fill text-xl"></i>
+          <div>
+            <h3 className="text-lg font-medium">Location</h3>
+            <p className="text-gray-600 text-sm">
+              {rideData?.pickup}
+            </p>
+          </div>
+        </div>
+        <div className="flex items-center gap-5  mb-4">
+          <i className="ri-map-pin-user-fill text-xl"></i>
+          <div>
+            <h3 className="text-lg font-medium">Destination</h3>
+            <p className="text-gray-600 text-sm">
+              {rideData?.destination}
+            </p>
+          </div>
+        </div>
+        <div className="flex items-center gap-5 mb-4">
+          <i className="ri-currency-line text-xl"></i>
+          <div>
+            <h3 className="text-lg font-medium">{rideData?.fare}$</h3>
+            <p className="text-gray-600 text-sm">Cash</p>
+          </div>
+        </div>
+       {/* <form onSubmit={(e) => submitHandler(e)}> */}
+      
+        <button
+          className="w-full bg-green-600 p-2 rounded-lg text-white font-semibold text-lg mt-5 block text-center"
+    
           onClick={endRide}
         >
           Finish Ride
         </button>
         
       {/* </form> */}
-    </div>
+      </div>
+     
   </motion.div>
   )
 }

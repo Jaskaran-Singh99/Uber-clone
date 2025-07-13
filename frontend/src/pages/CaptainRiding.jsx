@@ -5,6 +5,7 @@ import CaptainDetails from "../components/CaptainDetails";
 import RidePopUp from "../components/RidePopUp";
 import ConfirmRidePopUp from "../components/ConfirmRidePopUp";
 import FinishRide from "../components/FinishRide";
+import LiveTracking from '../components/LiveTracking'
 
 const CaptainRiding = () => {
     const [finishRide, setFinishRide] = useState(false)
@@ -22,10 +23,11 @@ const CaptainRiding = () => {
       </Link>
     </div>
     <div className="h-4/5">
-      <img
+      {/* <img
         className=" w-full h-full object-cover"
         src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif"
-      ></img>
+      ></img> */}
+      <LiveTracking></LiveTracking>
     </div>
     <div className="h-1/5 bg-slate-500 flex justify-evenly items-center">
     <h3 className="font-bold text-lg">4 KM Away</h3>

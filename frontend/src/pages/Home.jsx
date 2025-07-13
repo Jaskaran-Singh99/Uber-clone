@@ -36,7 +36,7 @@ const home = () => {
    const { socket } = useContext(SocketContext)
     const {user} = useContext(UserDataContext)
      useEffect(() => {
-      console.log(user)
+      // console.log(user)
         socket.emit("join", { userType: "user", userId: user._id })
     }, [  ])
 
@@ -48,7 +48,7 @@ const home = () => {
         setRide(ride)
     })
     socket.on('ride-started', ride => {
-        console.log("ride")
+        // console.log("ride")
         setWaitingForDriver(false)
         navigate('/riding', { state: { ride } }) // Updated navigate to include ride data
     })
@@ -103,7 +103,7 @@ const home = () => {
 
 
         setFare(response.data)
-        console.log(response.data)
+        // console.log(response.data)
 
 
     }
@@ -119,7 +119,7 @@ const home = () => {
                 Authorization: `Bearer ${localStorage.getItem('token')}`
             }
         })
-        console.log(response)
+        // console.log(response)
        }
        catch(err){
         console.log(err)

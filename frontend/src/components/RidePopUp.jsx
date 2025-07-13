@@ -21,7 +21,8 @@ const RidePopUp = ({confirmRide, ridePopUp, setRidePopUp, setConfirmRidePopUp, r
 
       <div>
         <div className="flex items-center mb-4 justify-between bg-slate-400 p-4 rounded-lg">
-        <img className="h-14 rounded-full" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRU8Wu_1D29aOedgGsXeNh3dagpO76RBTTo3g&s"></img>
+        <img className="h-14 rounded-full" src="https://images.unsplash.com/vector-1749124647885-49713a8d2750?q=80&w=2360&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"></img>
+        
         <h2 className="font-medium text-lg">{ride?.user.fullname.firstname + " "+ride?.user.fullname.lastname}</h2>
         <h5 className="font-bold">3.5km</h5>
         </div>

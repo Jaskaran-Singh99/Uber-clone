@@ -6,7 +6,7 @@ const ConfirmRide = ({ confirmRidePanel, setConfirmRidePanel, setLookingForADriv
     <motion.div
       initial={{ height: 0 }}
       animate={{ height: confirmRidePanel ? "75%" : 0 }}
-      transition={{ duration: 0.5, ease: "easeInOut" }}
+      transition={{ duration: 0.5, ease: "easeInOut" }} 
       className="z-10 fixed bottom-0 bg-white px-4  w-full h-[70%] "
     >
       <h2 className="font-semibold text-2xl mb-4 text-center mt-4">
@@ -16,25 +16,33 @@ const ConfirmRide = ({ confirmRidePanel, setConfirmRidePanel, setLookingForADriv
         <img className='h-32' src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_368,w_552/v1738948739/assets/ae/21231e-5dac-4fe1-a4cd-6ada26479415/original/business-berline.png"></img>
       </div>
       <div className="w-full ml-4">
-        <div className="flex items-center gap-5  mb-4">
-            <i className="ri-map-pin-2-fill text-xl"></i>
+         <div className="flex items-center gap-5 mb-4">
+           <i class="ri-subway-fill text-2xl"></i>
             <div>
-                <h3 className="text-lg font-medium">L6X/4L3</h3>
+                <h3 className="text-lg font-medium">Vehicle Type</h3>
+                <p className="text-gray-600 text-sm capitalize">{vehicleType}</p>
+            </div>
+        </div> 
+
+        <div className="flex items-center gap-5  mb-4">
+            <i className="ri-map-pin-2-fill text-2xl"></i>
+            <div>
+                <h3 className="text-lg font-medium">Pickup Location</h3>
                 <p className="text-gray-600 text-sm">{pickup}</p>
             </div>
         </div>
         <div className="flex items-center gap-5  mb-4">
-            <i className="ri-map-pin-user-fill text-xl"></i>
+            <i className="ri-map-pin-user-fill text-2xl"></i>
             <div>
-                <h3 className="text-lg font-medium">Third Wave Coffee</h3>
+                <h3 className="text-lg font-medium">Destination</h3>
                 <p className="text-gray-600 text-sm">{destination}</p>
             </div>
         </div>
         <div className="flex items-center gap-5 mb-4">
-            <i className="ri-currency-line text-xl"></i>
+            <i className="ri-currency-line text-2xl"></i>
             <div>
                 <h3 className="text-lg font-medium">{fare[vehicleType]}$</h3>
-                <p className="text-gray-600 text-sm">Cash</p>
+                <p className="text-gray-600 text-sm">Price</p>
             </div>
         </div>
         

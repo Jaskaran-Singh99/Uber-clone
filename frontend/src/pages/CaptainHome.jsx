@@ -8,6 +8,7 @@ import ConfirmRidePopUp from "../components/ConfirmRidePopUp";
 import { useContext, useEffect } from "react";
 import { CaptainDataContext } from "../context/CaptainContext";
 import { SocketContext } from "../context/SocketContext";
+import LiveTracking from '../components/LiveTracking'
 
 const CaptainHome = () => {
   const [confirmRidePopUp, setConfirmRidePopUp] = useState(false);
@@ -108,10 +109,11 @@ const CaptainHome = () => {
         </Link>
       </div>
       <div className="h-3/5">
-        <img
+        {/* <img
           className=" w-full h-full object-cover"
           src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif"
-        ></img>
+        ></img> */}
+        <LiveTracking></LiveTracking>
       </div>
       <CaptainDetails captain={captain}></CaptainDetails>
       <RidePopUp

@@ -31,7 +31,8 @@ const VehiclePanel = ({ vehiclePanel, setConfirmRidePanel, fare, createRide, set
         </div>
         <div className="font-semibold text-xl ">{fare.car}$</div>
       </div>
-      <div className="flex items-center justify-between border-2 active:border-black rounded-xl p-2 w-full mb-3">
+
+      <div onClick={()=>{setConfirmRidePanel(true), setVehicleType('motorcycle')}} className="flex items-center justify-between border-2 active:border-black rounded-xl p-2 w-full mb-3">
         <img
           className="h-12 "
           src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_368,w_552/v1648177797/assets/fc/ddecaa-2eee-48fe-87f0-614aa7cee7d3/original/Uber_Moto_312x208_pixels_Mobile.png"
@@ -50,7 +51,8 @@ const VehiclePanel = ({ vehiclePanel, setConfirmRidePanel, fare, createRide, set
         </div>
         <div className="font-semibold text-xl ">{fare.motorcycle}$</div>
       </div>
-      <div className="flex items-center justify-between border-2 active:border-black rounded-xl p-2 w-full mb-3">
+
+      <div onClick={()=>{setConfirmRidePanel(true), setVehicleType('auto')}} className="flex items-center justify-between border-2 active:border-black rounded-xl p-2 w-full mb-3">
         <img
           className="h-12 "
           src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_368,w_552/v1648431773/assets/1d/db8c56-0204-4ce4-81ce-56a11a07fe98/original/Uber_Auto_558x372_pixels_Desktop.png"
