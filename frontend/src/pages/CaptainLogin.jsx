@@ -49,6 +49,7 @@ const CaptainLogin = () => {
           className="bg-[#eeeeee] rounded px-4 py-2 w-full border text-xl placeholder:text-base mb-7"
         ></input>
         <button type="submit" className="bg-[#111] text-white font-semibold rounded px-4 py-2 w-full  text-xl placeholder:text-base mb-2">Login</button>
+        <button onClick={()=>{setPassword('guestPassword') ,setEmail('guestcaptain@gmail.com')} } className="bg-[#1b7eff] text-white font-semibold rounded px-4 py-2 w-full  text-xl placeholder:text-base mb-2">Guest Login</button>
 
         <p className="text-center">Wanna join the fleet?  <Link to='/captain-signup' className="text-blue-600 ">Register as a Captain</Link></p>
        

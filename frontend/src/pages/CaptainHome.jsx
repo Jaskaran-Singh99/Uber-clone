@@ -93,7 +93,7 @@ const CaptainHome = () => {
       setRidePopUp(false);
       setConfirmRidePopUp(true);
     } catch (err) {
-      console.log(err);
+      console.log(err); 
     }
   };
 
@@ -108,7 +108,7 @@ const CaptainHome = () => {
           <i className="text-lg font-medium ri-logout-box-r-line"></i>
         </Link>
       </div>
-      <div className="h-3/5">
+      <div className="h-2/5">
         {/* <img
           className=" w-full h-full object-cover"
           src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif"

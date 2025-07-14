@@ -35,7 +35,7 @@ const ConfirmRidePopUp = ({ confirmRidePopUp, setConfirmRidePopUp, ride }) => {
       initial={{ height: "30%" }}
       animate={{ height: confirmRidePopUp ? "100%" : 0 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
-      className="z-10 fixed bottom-0 bg-white px-4  w-full h-[70%] "
+      className="z-10 fixed bottom-0 bg-white px-4  w-full h-[80%] "
     >
       <h2 className="font-semibold text-2xl mb-4 text-center mt-4">
         Enter OTP to confirm!

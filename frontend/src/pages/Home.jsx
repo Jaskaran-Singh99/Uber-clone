@@ -144,7 +144,7 @@ const home = () => {
             </div>
       </div>
       <div className="absolute  h-screen top-0 w-full flex flex-col justify-end rounded-lg">
-        <div className="h-[35%] p-5 bg-white relative">
+        <div className="h-[45%] p-5 bg-white relative">
           <h3 className="text-2xl" onClick={() => {setIsPanelOpen(false) , setVehiclePanel(false), setConfirmRidePanel(false) ,setLookingForADriver(false) , setWaitingForDriver(false)}}>
             <i className="ri-arrow-down-wide-line absolute top-6 right-5"></i>
           </h3>
